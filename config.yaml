@@ -1,0 +1,5 @@
+OpenAI:
+  model: "gpt-4o"
+  api_version: ''
+  api_key: 'sk-xx'
+  api_base: ''
