@@ -22,7 +22,8 @@
 - [ ] 使用Langchian调用LLM
   - [x] 使用提示模板(Prompt Template)
   - [x] 使用json或structured output([文档](task2/readme.md))
-  - [ ] 使用Memory组件完成多轮对话，比如修改上次输出
+  - [ ] 使用Memory组件完成多轮对话，比如修改上次输出(修改小说)
+    - 存在的问题：修改小说时是将memory中的的小说拿出来放到prompt中，不清楚这是否符合我预先的假设 
 - [ ] 使用Langgraph调用LLM
   - [x] 使用提示模板(Prompt Template)
   - [ ] 使用json或structured output
@@ -82,3 +83,42 @@ langchain_openai 库在处理 Pydantic 的 BaseModel 时检测到使用的是 Py
 |\x0b-\x0c|	垂直制表符（VT）、换页符（FF）|
 |\x0e-\x1f|	其他控制字符（如 ESC、CAN 等）|
 
+### 6
+>The class `LLMChain` was deprecated in LangChain 0.1.17 and will be removed in 1.0. Use :meth:`~RunnableSequence, e.g., `prompt | llm`` instead.
+  write_chain = LLMChain(
+
+LangChain 0.1.17 版本开始弃用 LLMChain，推荐使用更灵活的 RunnableSequence。
+RunnableSequence 是一种基于管道（pipeline）的设计，允许你将多个组件（如提示模板、模型调用等）串联起来。
+
+### 7
+>    response = write_chain.invoke({
+               ^^^^^^^^^^^^^^^^^^^^
+    pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Generation
+text
+  Input should be a valid string [type=string_type, input_value=Novel(occurrence_time='...樱花下的邂逅》'), input_type=Novel]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+
+Generation 的限制：
+Generation 类的 text 字段必须是字符串类型。
+当使用 with_structured_output(Novel) 时，链的输出是一个 Pydantic 模型对象（Novel），而不是字符串。这导致了 ValidationError。
+
+
+# 遇到的一些警告
+
+### 1
+
+>LangChainDeprecationWarning: As of langchain-core 0.3.0, LangChain uses pydantic v2 internally. The langchain_core.pydantic_v1 module was a compatibility shim for pydantic v1, and should no longer be used. Please update the code to import from Pydantic directly.
+
+For example, replace imports like: `from langchain_core.pydantic_v1 import BaseModel`
+with: `from pydantic import BaseModel`
+or the v1 compatibility namespace if you are working in a code base that has not been fully upgraded to pydantic 2 yet.         from pydantic.v1 import BaseModel
+
+### 2
+
+>langchain_task2_Momory.py:152: LangChainDeprecationWarning: The method `Chain.run` was deprecated in langchain 0.1.0 and will be removed in 1.0. Use :meth:`~invoke` instead.
+  response = write_chain.run({
+
+需要替代API
