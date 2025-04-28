@@ -105,6 +105,12 @@ Generation 的限制：
 Generation 类的 text 字段必须是字符串类型。
 当使用 with_structured_output(Novel) 时，链的输出是一个 Pydantic 模型对象（Novel），而不是字符串。这导致了 ValidationError。
 
+### 8
+
+>langgraph.errors.InvalidUpdateError: Expected dict,
+
+langgraph 期望节点返回一个字典（dict），但 superviser 函数返回了一个字符串
+
 
 # 遇到的一些警告
 
