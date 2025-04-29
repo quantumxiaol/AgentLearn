@@ -111,6 +111,9 @@ Generation 类的 text 字段必须是字符串类型。
 
 langgraph 期望节点返回一个字典（dict），但 superviser 函数返回了一个字符串
 
+### 9
+>Checkpointer requires one or more of the following 'configurable' keys: ['thread_id', 'checkpoint_ns', 'checkpoint_id']
+
 
 # 遇到的一些警告
 

@@ -87,3 +87,30 @@ LangGraph 提供了一种简单的方式来创建循环图，这种图结构非�
     # 添加循环边
     workflow.add_edge("process_input", check_completion)
     workflow.add_edge("check_completion", "process_input")
+
+## PromptTemplate
+单轮的，不需要维护上下文。
+例如：生成文章、翻译、摘要提取等。
+
+    # 定义模板
+    template = "根据以下主题生成一段短文：\n主题: {topic}"
+    prompt_template = PromptTemplate(input_variables=["topic"], template=template)
+
+    # 填充模板
+    prompt = prompt_template.format(topic="人工智能")
+    print(prompt)
+
+## ChatPromptTemplate
+涉及多轮对话，需要维护聊天上下文。
+例如：聊天机器人、客服系统、虚拟助手等。
+
+    # 定义模板
+    template = ChatPromptTemplate.from_messages([
+        SystemMessage(content="你是一个智能助手，帮助用户解答问题。"),
+        HumanMessage(content="你好，我想了解人工智能的发展历史。"),
+        ("ai", "{ai_response}"),  # 动态插入 AI 的回复
+    ])
+
+    # 填充模板
+    prompt = template.format(ai_response="人工智能起源于20世纪50年代，经历了多次技术革新。")
+    print(prompt)
