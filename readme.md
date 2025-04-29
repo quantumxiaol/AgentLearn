@@ -22,12 +22,16 @@
 - [ ] 使用Langchian调用LLM
   - [x] 使用提示模板(Prompt Template)
   - [x] 使用json或structured output([文档](task2/readme.md))
-  - [ ] 使用Memory组件完成多轮对话，比如修改上次输出(修改小说)
+  - [x] 使用Memory组件完成多轮对话，比如修改上次输出(修改小说)([结果](task2/result.md))
     - 存在的问题：修改小说时是将memory中的的小说拿出来放到prompt中，不清楚这是否符合我预先的假设 
 - [ ] 使用Langgraph调用LLM
   - [x] 使用提示模板(Prompt Template)
-  - [ ] 使用json或structured output
+  - [x] 使用json或structured output([文档](task3/readme.md))
+  - [x] 使用监督者节点，写小说、按照要求修改小说，使用state记忆上下文([结果](task3/result.md))
+  - [ ] 使用checkpoint记忆上下文
   - [ ] 修改节点，增加功能
+- [ ] 图片处理
+  - [ ] 使用LangChain理解图片 
 - [ ] 还在增加……
 
 
@@ -114,6 +118,15 @@ langgraph 期望节点返回一个字典（dict），但 superviser 函数返回
 ### 9
 >Checkpointer requires one or more of the following 'configurable' keys: ['thread_id', 'checkpoint_ns', 'checkpoint_id']
 
+### 10
+>    image_data = base64.b64encode(img).decode('utf-8')
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "anaconda3\envs\yolo\Lib\base64.py", line 58, in b64encode
+    encoded = binascii.b2a_base64(s, newline=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: a bytes-like object is required, not 'Image'
+
+base64.b64encode() 方法需要的是字节类型的输入
 
 # 遇到的一些警告
 
