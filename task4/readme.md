@@ -18,3 +18,6 @@
 
 
 或者使用Base64编码。
+
+
+openai 的OpenAI 和 langchain_openai 的OpenAI 不一样。

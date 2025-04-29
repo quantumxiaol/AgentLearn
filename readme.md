@@ -128,6 +128,12 @@ TypeError: a bytes-like object is required, not 'Image'
 
 base64.b64encode() 方法需要的是字节类型的输入
 
+### 11
+
+>openai.RateLimitError: Error code: 429 - {'error': {'message': '当前分组上游负载已饱和，请稍后再试 (request id: 2025042913372369276548BME6E0jc)', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+
+这个是openai的限流问题，传给的Token太多了
+
 # 遇到的一些警告
 
 ### 1
