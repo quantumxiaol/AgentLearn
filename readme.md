@@ -13,9 +13,13 @@
 
 - [x] 了解OpenAI、Langchain、Langgraph三种调用方式
 - [x] 将图片输给LLM ([文档](imageToken/readme.md))
-  - 方法：采用Vit提取特征Token化，然后拼接prompt，然后输入给LLM
-  - 结果：效果一般,OpenAI GPT-4o说它理解不了图片
-  - 改进：换成原生多模态的模型可能会好，但那样就需要对模型进行SFT微调了。
+  - [ ] 拼接Token到prompt中
+    - 方法：采用Vit提取特征Token化，然后拼接prompt，然后输入给LLM
+    - 结果：效果一般,OpenAI GPT-4o说这样它理解不了图片
+    - 改进：换成原生多模态的模型可能会好，但那样就需要对模型进行SFT微调了。
+  - [ ] 原生多模态的模型通过API调用输入图片  
+    - [x] OpenAI GPT-4o理解图片
+    - [ ] 使用LangChain理解图片 
 - [ ] 模型API直接调用
   - [x] OpenAI的API完成对话([文档](task1/readme.md))
   - [ ] 考虑使用某种方法能够输入图片，或者使用VLm模型
@@ -30,8 +34,10 @@
   - [x] 使用监督者节点，写小说、按照要求修改小说，使用state记忆上下文([结果](task3/result.md))
   - [ ] 使用checkpoint记忆上下文
   - [ ] 修改节点，增加功能
-- [ ] 图片处理
-  - [ ] 使用LangChain理解图片 
+- [ ] Tools调用
+  - [ ] 写一些小工具，图片预处理、目标检测、深度估计等
+  - [ ] 搭建MCP Server 
+  - [ ] LLM调用工具
 - [ ] 还在增加……
 
 
