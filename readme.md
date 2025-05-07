@@ -6,7 +6,7 @@
 
 项目大方向是Agent，让大模型能用工具来解决一些问题。
 
-这是我用来学习Langchain和Langgraph的，以及探索LLM如何变成VLM，就是让它能看图片，有一定的多模态能力。通过图片来判断一些场景。
+这是我用来学习Langchain和Langgraph的，以及探索LLM如何变成VLLM，就是让它能看图片，有一定的多模态能力。通过图片来判断一些场景。
 
 
 # 任务
@@ -19,10 +19,10 @@
     - 改进：换成原生多模态的模型可能会好，但那样就需要对模型进行SFT微调了。
   - [ ] 原生多模态的模型通过API调用输入图片  
     - [x] OpenAI GPT-4o理解图片
-    - [ ] 使用LangChain理解图片 
+    - [x] 使用LangChain理解图片 ([文档](task4/readme.md))([结果](task4/result.md))
 - [ ] 模型API直接调用
   - [x] OpenAI的API完成对话([文档](task1/readme.md))
-  - [ ] 考虑使用某种方法能够输入图片，或者使用VLm模型
+  - [ ] 考虑使用某种方法能够输入图片，或者使用VLLM模型
 - [ ] 使用Langchian调用LLM
   - [x] 使用提示模板(Prompt Template)
   - [x] 使用json或structured output([文档](task2/readme.md))
@@ -35,9 +35,16 @@
   - [ ] 使用checkpoint记忆上下文
   - [ ] 修改节点，增加功能
 - [ ] Tools调用
+  - [x] 使用openai function call([文档](task5/readme.md))
+  - [x] 使用langchain tools([结果](task5/result.md))
+  - [x] 对比使用工具的LLM和原生的LLM
   - [ ] 写一些小工具，图片预处理、目标检测、深度估计等
   - [ ] 搭建MCP Server 
+  - [ ] 使用MCP server来调用Tools
   - [ ] LLM调用工具
+- [ ] 简单项目
+  - [ ] 根据图片写短篇故事
+    - [ ] 目标检测
 - [ ] 还在增加……
 
 

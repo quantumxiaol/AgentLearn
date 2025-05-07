@@ -13,3 +13,7 @@ fastapi
 
 transformers
 # torch https://download.pytorch.org
+
+# MCP tools
+mcp
+mcp-server

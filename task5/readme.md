@@ -25,6 +25,21 @@
         }
     ]
 
+## LangChain的Tool
+在 LangChain 中，Tool 是一种封装了某个具体功能（例如一个函数或API）的对象。它可以被语言模型理解并在适当的时候被调用。
+Agent 是使用这些工具的主要实体。它接收用户输入，决定是否需要调用某个工具，并将工具返回的结果整合到最终的回答中。
+
+定义工具函数get_prime_in_num_n(num)，返回小于等于 num 的所有质数列表。在定义工具函数时，尽量使用 Python 的类型提示来帮助 LangChain 更好地理解和解析参数。
+
+使用 @tool 装饰器将函数包装成一个 LangChain 工具
+
+    @tool
+    def get_prime_in_num_n_tool(num: int) -> str:
+        """返回小于等于 num 的所有质数。"""
+        primes = get_prime_in_num_n(num)
+        return f"小于等于 {num} 的质数有: {primes}"
+
+
 ## MCP
 MCP（Model Context Protocol，模型上下文协议）是由Anthropic推出的开源协议，旨在实现大型语言模型（LLM）与外部数据源和工具的无缝集成，用来在大模型和数据源之间建立安全双向的链接。
 
