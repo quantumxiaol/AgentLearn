@@ -42,7 +42,13 @@
   - [ ] 搭建MCP Server 
   - [ ] 使用MCP server来调用Tools
   - [ ] LLM调用工具
-- [ ] 简单项目
+- [ ] 搭建服务端和客户端
+  - [x] 了解FastApi和flask
+  - [x] 使用FastApi和flask创建服务端和客户端，调用自己的工具
+  - [ ] 
+- [ ] AgentKit使用
+  - [ ] 了解AgentKit
+- [ ] 实现简单项目
   - [ ] 根据图片写短篇故事
     - [ ] 目标检测
 - [ ] 还在增加……

@@ -1,4 +1,5 @@
 # Python 3.11
+# conda create -n agentLearning python=3.11
 
 # agent
 langchain_core
@@ -10,6 +11,8 @@ openai
 
 # server
 fastapi
+uvicorn
+flask
 
 transformers
 # torch https://download.pytorch.org
