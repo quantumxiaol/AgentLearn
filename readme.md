@@ -20,6 +20,9 @@
   - [ ] 原生多模态的模型通过API调用输入图片  
     - [x] OpenAI GPT-4o理解图片
     - [x] 使用LangChain理解图片 ([文档](task4/readme.md))([结果](task4/result.md))
+  - [x] 图片输入
+    - [x] Base64编码图片
+    - [x] url上传图片(AliYun OSS)
 - [ ] 模型API直接调用
   - [x] OpenAI的API完成对话([文档](task1/readme.md))
   - [ ] 考虑使用某种方法能够输入图片，或者使用VLLM模型
@@ -62,6 +65,7 @@
 ### [task5](task5)-[Tools调用](task5/readme.md) function call+tools
 ### [task6](task6)-[搭建服务端和客户端](task6/readme.md)
 ### [task7](task7)-[使用MCP tool和MCP server](task7/readme.md)
+### [task8](task8)-[MCP和图片](task8/readme.md)
 
 
 # [报错、警告和处理方法](error.md)
