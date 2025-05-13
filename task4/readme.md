@@ -11,13 +11,21 @@
             {"type": "text", "text": "describe this image"},
             {
                 "type": "image_url",
-                "image_url": {"url": f"data:image/jpeg;base64,{image_data}"},
+                "image_url": {"url":url"},
             },
         ],
     )
 
 
 或者使用Base64编码。
-
+    message = HumanMessage(
+        content=[
+            {"type": "text", "text": "describe this image"},
+            {
+                "type": "image_url",
+                "image_url": {"url": f"data:image/jpeg;base64,{image_data}"},
+            },
+        ],
+    )
 
 openai 的OpenAI 和 langchain_openai 的OpenAI 不一样。

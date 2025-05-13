@@ -28,3 +28,6 @@ transformers==4.51.3
 # MCP tools
 mcp==1.7.1
 mcp-server==0.1.4
+
+# AliOSS
+oss2==2.19.1

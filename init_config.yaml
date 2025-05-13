@@ -4,3 +4,9 @@ OpenAI:
   api_version: ''
   api_key: ''
   api_base: ''
+AliOSS:
+  AccessKey_ID: ''
+  AccessKey_Secret: ''
+  bucket_name: ''
+testImageUrl:
+  testImageUrl: ''

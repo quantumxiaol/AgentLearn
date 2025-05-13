@@ -15,7 +15,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from imageToken.imageUrl import image_to_base64
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from readConfig import get_openai_config
+from readConfig import get_openai_config,get_testImageUrl
 
 def get_img_prompt_template():
     prompt = ChatPromptTemplate.from_messages(
@@ -27,13 +27,31 @@ def get_img_prompt_template():
                 {
                     "type": "image_url",
                     "image_url": {"url": "data:image/jpeg;base64,{img_url}"},
+                    
                 }
             ],
         ),
     ]
     )
     return prompt
-
+url = get_testImageUrl()
+def get_img_prompt_template_v1():
+    prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", "Describe the image provided"),
+        (
+            "user",
+            [
+                {
+                    "type": "image_url",
+                    # "image_url": {"url": "data:image/jpeg;base64,{img_url}"},
+                    "image_url": {"url": url},
+                }
+            ],
+        ),
+    ]
+    )
+    return prompt
 def get_img_prompt_template_v2():
     prompt_template = PromptTemplate(
         input_variables=["img_url"],
@@ -51,6 +69,7 @@ def langchain_LLM(model,apikey,url, img_url):
     prompt_template = get_img_prompt_template()
     # prompt_template = get_img_prompt_template_v2()
     # 图片描述: {image_description}
+    prompt_template = get_img_prompt_template_v1()
     
     llm = ChatOpenAI(model=model, 
                  api_key=apikey,
@@ -105,7 +124,8 @@ if __name__ == "__main__":
     # response = get_img_discribe(image_data,client,"根据以下图片，描述图片并输出图片描述：。")
 
 
-    response = langchain_LLM(model,api_key,api_base, image_data)
+    # response = langchain_LLM(model,api_key,api_base, image_data)
+    response = langchain_LLM(model,api_key,api_base, url)
 
     print(response)
 

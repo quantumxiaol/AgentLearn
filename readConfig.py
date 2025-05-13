@@ -22,3 +22,20 @@ def get_openai_config():
     api_key = openai_config.get("api_key")
     api_base = openai_config.get("api_base")
     return model, api_key, api_base
+
+def get_aliOss_config():
+    with open(config_path, 'r') as file:
+        config = yaml.safe_load(file)
+        # 获取 AliOSS 配置
+    aliOss_config = config.get("AliOSS", {})
+    access_key_id = aliOss_config.get("AccessKey_ID")
+    access_key_secret = aliOss_config.get("AccessKey_Secret")
+    bucket_name= aliOss_config.get("bucket_name")
+    return access_key_id, access_key_secret, bucket_name
+
+def get_testImageUrl():
+    with open(config_path, 'r') as file:
+        config = yaml.safe_load(file)
+    testImageUrl = config.get("testImageUrl", {})
+    testImageUrl = testImageUrl.get("testImageUrl")
+    return testImageUrl
