@@ -1,7 +1,7 @@
 import os, sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from readConfig import get_openai_config
+from readConfig import get_openai_config,get_testImageUrl
 
 # 创建异步函数
 from mcp import ClientSession, StdioServerParameters
@@ -36,11 +36,13 @@ server_params = StdioServerParameters(
 )
 
 # image = image_to_base64(r"test.jpg")
-image = open_image("test.jpg")
-image.resize((512, 512* image.height//image.width))
-image = imageData_to_base64(image)
+# image = open_image("test.jpg")
+# image.resize((512, 512* image.height//image.width))
+# image = imageData_to_base64(image)
 # print(image)
-print(len(image))
+# print(len(image))
+
+image_url=get_testImageUrl()
 
 def get_img_prompt_template():
     prompt = ChatPromptTemplate.from_messages(
@@ -63,9 +65,10 @@ prompt = get_img_prompt_template()
 
 message = HumanMessage(
     content=[
-        {"type": "text", "text": "请帮我把这张图片缩小一下，返回Base64编码的图片"},
-        # {"type": "text", "text": "请帮我描述图片内容"},
-        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image}"}},
+        # {"type": "text", "text": "请帮我把这张图片缩小一下，返回Base64编码的图片"},
+        {"type": "text", "text": "请帮我描述图片内容"},
+        # {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_url}"}},
+        {"type": "image_url", "image_url": {"url": image_url}},
     ]
 )
 # 创建异步函数
@@ -82,8 +85,8 @@ async def async_main():
             agent_response = await agent.ainvoke({"messages": [message]})
 
             print("Final answer:", agent_response["messages"][-1].content)
-            img = base64_to_image(agent_response["messages"][-1].content)
-            img.save("Agentoutput.jpg")
+            # img = base64_to_image(agent_response["messages"][-1].content)
+            # img.save("Agentoutput.jpg")
 
 
 # 调用异步函数

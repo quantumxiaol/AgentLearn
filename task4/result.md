@@ -23,3 +23,8 @@ side of the bus features a graphic incorporating a green leaf and the phrase "mo
 prompt_tokens=815, total_tokens=950
 这个结果是正常的
 
+使用url访问图片
+
+>content='The image shows a street scene in an urban area, specifically in Madrid, Spain. Prominently displayed is an electric public transport vehicle, a bus operated by EMT Madrid. The bus is branded with the words "cero emisiones," which translates to "zero emissions," indicating that it is environmentally friendly. The design includes green leaf imagery alongside the text "electricam EMT," further emphasizing its eco-friendly nature. The bus route is marked as "M1 Sol/Sevilla" on its destination display. \n\nThe street is paved and there are pedestrians walking along the sidewalk. The weather appears to be sunny, as indicated by the shadows and the people’s clothing, which consists of casual attire suitable for mild weather. In the 
+background, the facade of a building is visible, showcasing typical Spanish architecture with features such as balconies and tall windows. The traffic sign, partially visible, suggests there might be restrictions or information relevant to the location. Overall, the scene conveys a modern urban environment that is increasingly focused on sustainability.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 203, 'prompt_tokens': 800, 'total_tokens': 1003, 'completion_tokens_details': {'accepted_prediction_tokens': None, 'audio_tokens': None, 'reasoning_tokens': None, 'rejected_prediction_tokens': None}, 
+usage_metadata={'input_tokens': 800, 'output_tokens': 203, 'total_tokens': 1003, 'input_token_details': {}, 'output_token_details': {}}
