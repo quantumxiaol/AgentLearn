@@ -2,21 +2,29 @@
 # conda create -n agentLearning python=3.11
 
 # agent
-langchain_core
-langgraph
-langchain_community
+langchain==0.3.23
+langgraph==0.3.31
+langchain_community==0.3.21
 langchain_experimental
 
-openai
+openai==1.75.0
+
+agentic-kit-core==0.0.5
+agentic-kit-eda==0.0.3
+agentic-kit-flow==0.0.2
+
+PyYAML==6.0.2
+pydantic==2.11.3
+pydantic_core==2.33.1
 
 # server
-fastapi
-uvicorn
-flask
+fastapi==0.115.12
+uvicorn==0.34.2
+flask==3.1.0
 
-transformers
+transformers==4.51.3
 # torch https://download.pytorch.org
 
 # MCP tools
-mcp
-mcp-server
+mcp==1.7.1
+mcp-server==0.1.4
