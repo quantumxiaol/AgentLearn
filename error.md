@@ -95,6 +95,12 @@ base64.b64encode() 方法需要的是字节类型的输入
 
 这个是openai的限流问题，传给的Token太多了
 
+### 12
+
+TypeError: create_react_agent() takes 2 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given
+
+create_react_agent的关键字参数和位置参数的问题
+
 # 警告
 
 ### 1

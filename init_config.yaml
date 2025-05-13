@@ -1,0 +1,6 @@
+# it should be renamed to config.yaml
+OpenAI:
+  model: "gpt-4o"
+  api_version: ''
+  api_key: ''
+  api_base: ''

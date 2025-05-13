@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from readConfig import get_openai_config
 
 # Initialize FastMCP server
-mcp = FastMCP("PrimeGet", version="1.1.4514")
+mcp = FastMCP("Math Tools", version="1.1.4514")
 
 # 工具
 #mcp.tool() 将函数注册为 mcp tool 工具
