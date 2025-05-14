@@ -2,16 +2,14 @@
 # conda create -n agentLearning python=3.11
 
 # agent
-langchain==0.3.23
+langchain==0.3.25
+langchain-core==0.3.59
 langgraph==0.3.31
-langchain_community==0.3.21
+langchain_community==0.3.24
 langchain_experimental
 
 openai==1.75.0
 
-agentic-kit-core==0.0.5
-agentic-kit-eda==0.0.3
-agentic-kit-flow==0.0.2
 
 PyYAML==6.0.2
 pydantic==2.11.3
