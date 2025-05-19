@@ -66,6 +66,7 @@
 ### [task6](task6)-[搭建服务端和客户端](task6/readme.md)
 ### [task7](task7)-[使用MCP tool和MCP server](task7/readme.md)
 ### [task8](task8)-[MCP和图片](task8/readme.md)
-
+### [task9](task9)-[异步和并发](task9/readme.md)
+### [task10](task10)-[图片上传](task10/readme.md)
 
 # [报错、警告和处理方法](error.md)
