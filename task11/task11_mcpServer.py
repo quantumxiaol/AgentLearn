@@ -30,7 +30,8 @@ def test():
 async def img_aug(request: ImgAugRequest): 
     response = requests.post(
         f"{BASE_URL}/img_aug",
-        json={"img_url": request.img_url}
+        # json={"img_url": request.img_url}
+        json=request.img_url
     )
     if response.status_code == 200:
         return response.json()

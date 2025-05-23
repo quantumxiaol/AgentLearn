@@ -15,6 +15,8 @@
 
 运行`python task11\task11_Client.py`测试LLM调用MCP tools。
 
+运行`python task11\testFastapi.py`测试mcp server的接口情况。
+
 # 结果
 MCP tools有三个，['test_hello_get', 'img_aug_img_aug_post', 'getPrimesinN_primes_post']
 可以使用getPrimesinN_primes_post返回素数，但是使用img_aug_img_aug_post会报错。

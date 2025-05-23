@@ -34,12 +34,12 @@ app = FastAPI()
 @app.post("/img_aug", response_model=str)
 async def img_aug(image_url: str = Body(..., description="需要进行图像增强处理的图片 URL", title='需要预处理进行图像增强的图片url地址')):
     # 访问image_url，不能访问报错（路径不存在）。
-    try:
-        response = urllib.request.urlopen(image_url)
-    except HTTPError as e:
-        print("HTTP Error:", e.code, e.reason)
-    except URLError as e:
-        print("URL Error:", e.reason)
+    # try:
+    #     response = urllib.request.urlopen(image_url)
+    # except HTTPError as e:
+    #     print("HTTP Error:", e.code, e.reason)
+    # except URLError as e:
+    #     print("URL Error:", e.reason)
     return img_augment(image_url)
 
 
