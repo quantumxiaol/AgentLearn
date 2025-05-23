@@ -44,13 +44,15 @@
   - [ ] 写一些小工具，图片预处理、目标检测、深度估计等
   - [x] 搭建MCP Server ([文档](task7/readme.md))
   - [x] 使用MCP server来调用Tools([结果](task7/result.md))
-  - [ ] LLM调用工具
+  ~- [ ] LLM调用工具~
+  - [x] Agent调用工具([结果](task11/result.md))
 - [ ] 搭建服务端和客户端
   - [x] 了解FastApi和flask([文档](task6/readme.md))
   - [x] 使用FastApi和flask创建服务端和客户端，测试联通，调用自己的工具([结果](task6/result.md))
   - [ ] 使用FastApi部署服务
-- [ ] AgentKit使用
-  - [ ] 了解AgentKit
+  - [x] 使用fastapi_mcp部署服务
+- [ ] Agent使用
+  - [x] 了解Agent
   - [ ] 了解manus
 - [ ] 实现简单项目
   - [ ] 根据图片写短篇故事
@@ -68,5 +70,6 @@
 ### [task8](task8)-[MCP和图片](task8/readme.md)
 ### [task9](task9)-[异步和并发](task9/readme.md)
 ### [task10](task10)-[图片上传](task10/readme.md)
+### [task11](task11)-[Agent+MCP](task11/readme.md)
 
 # [报错、警告和处理方法](error.md)
