@@ -30,3 +30,6 @@ mcp-server==0.1.4
 
 # AliOSS
 oss2==2.19.1
+
+# faiss GPU ver only avaliable in Linux
+faiss-cpu==1.11

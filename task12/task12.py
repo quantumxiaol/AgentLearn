@@ -11,12 +11,12 @@ import os
 import sys
 from langchain_mcp_adapters.tools import load_mcp_tools
 from langgraph.prebuilt import create_react_agent
-from langchain.document_loaders import WebBaseLoader
-from langchain.embeddings import OpenAIEmbeddings
 from langchain.schema import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
 import bs4
 import uvicorn
 from fastapi import FastAPI, HTTPException
@@ -25,7 +25,7 @@ from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
-from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import TextLoader,CSVLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.prompts import ChatPromptTemplate
 from starlette.middleware.cors import CORSMiddleware
@@ -34,7 +34,11 @@ from langchain import hub
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from readConfig import get_openai_config
+
 model,api_key,api_base = get_openai_config()
+
+os.environ["USER_AGENT"] = "YourAppName/1.0"
+
 # 初始化 LLM 模型
 model = ChatOpenAI(
     model_name= model,
@@ -44,7 +48,8 @@ model = ChatOpenAI(
 
 
 # 加载文档,可换成PDF、txt、doc等其他格式文档
-loader = TextLoader('./umamusume.md', encoding='utf-8')
+# loader = TextLoader('./umamusume.md', encoding='utf-8')
+loader = CSVLoader('./umamusume.csv', encoding='utf-8')
 documents = loader.load()
 text_splitter = RecursiveCharacterTextSplitter.from_language(language="markdown", chunk_size=200, chunk_overlap=0)
 pages = text_splitter.split_documents(documents)
@@ -65,9 +70,9 @@ texts = text_splitter.create_documents(
 
 
 # 选择向量模型，并灌库
-db = FAISS.from_documents(texts, OpenAIEmbeddings(model="text-embedding-ada-002"))
+db = FAISS.from_documents(texts, OpenAIEmbeddings(model="text-embedding-ada-002",api_key=api_key,base_url=api_base))
 # 获取检索器，选择 top-2 相关的检索结果
-retriever = db.as_retriever(search_kwargs={"k": 1})
+retriever = db.as_retriever(search_kwargs={"k": 2})
 
 # 创建带有 system 消息的模板
 prompt_template = ChatPromptTemplate.from_messages([
@@ -111,7 +116,6 @@ app.add_middleware(
 class QuestionRequest(BaseModel):
     question: str
 
-
 # 定义响应模型
 class AnswerResponse(BaseModel):
     answer: str
@@ -126,10 +130,15 @@ async def ask_question(request: QuestionRequest):
         print(user_question)
 
         # 通过RAG链生成回答
-        answer = qa_chain.run(user_question)
+        raw_answer = qa_chain.invoke(user_question)
+
+        if isinstance(raw_answer, dict):
+            answer_text = raw_answer.get("result", str(raw_answer))  # 提取 result 字段
+        else:
+            answer_text = raw_answer
 
         # 返回答案
-        answer = AnswerResponse(answer=answer)
+        answer = AnswerResponse(answer=answer_text)
         print(answer)
         return answer
     except Exception as e:
