@@ -1,7 +1,13 @@
 # 目的
 使用RAG增强LLM的能力。
 
-pip install chromadb
+        pip install chromadb
+        pip install faiss-cpu
+
+# 运行
+在终端1中运行`python ./task12/task12.py`开启服务器
+在终端2中运行`python ./task12/task12_Client.py`测试
+
 # 概念
 ## ‌RAG（Retrieval Augmented Generation）
 RAG‌是一种通过检索外部知识库来增强大语言模型 （LLM）生成能力的技术。RAG通过结合检索和生成两个阶段，使得模型能够根据用户的查询从知识库中检索相关信息，并据此生成更准确和相关的回答。
@@ -17,3 +23,4 @@ RAG的基本流程包括三个主要步骤：索引、检索和生成。在索�
 chromadb是一个开源的向量数据库，用于存储和检索向量数据。它使用 Faiss 作为底层的向量检索引擎，并支持多种数据类型，如文本、图像、音频等。
 
 部分内容参照了http://wfcoding.com/articles/practice/0318/
+以及https://github.com/Sbwillbealier/qa-rag-demo
