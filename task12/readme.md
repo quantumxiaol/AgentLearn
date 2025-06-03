@@ -3,6 +3,7 @@
 
         pip install chromadb
         pip install faiss-cpu
+        pip install sentence-transformers
 
 # 运行
 在终端1中运行`python ./task12/task12.py`开启服务器

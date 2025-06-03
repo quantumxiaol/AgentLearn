@@ -31,6 +31,10 @@ from langchain.prompts import ChatPromptTemplate
 from starlette.middleware.cors import CORSMiddleware
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain import hub
+from langchain.schema import Document
+# from langchain.embeddings import HuggingFaceEmbeddings
+# from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from readConfig import get_openai_config
@@ -45,13 +49,36 @@ model = ChatOpenAI(
     api_key= api_key,
     base_url=api_base,
 )
+description = """
+这是一个关于赛马娘角色信息的表格，包含以下字段：
+- 赛马娘中文名: 角色的中文名称
+- 赛马娘英语名 / 日语名: 对应英文和日文名
+- 生日: 出生日期
+- 三围: BWH 尺寸
+- 身高(cm): 单位厘米
+- 声优(cv): 配音演员
+- 赛马娘特殊称号(中文名/日语名): 特殊称号及日文名，也叫专属称号，或二つ名、别称
+- 赛马娘特殊称号获取条件: 获取该称号的具体游戏内条件
 
+例如：米浴的称号“漆黑刺客”的获取条件是：
+重赏比赛出战23次以上，在人气第二以上的情况下取得菊花賞、天皇賞(春)的胜利；粉丝数达到320,000以上。
+"""
+metadata_doc = Document(page_content=description, metadata={"source": "table_description"})
 
 # 加载文档,可换成PDF、txt、doc等其他格式文档
 # loader = TextLoader('./umamusume.md', encoding='utf-8')
-loader = CSVLoader('./umamusume.csv', encoding='utf-8')
-documents = loader.load()
-text_splitter = RecursiveCharacterTextSplitter.from_language(language="markdown", chunk_size=200, chunk_overlap=0)
+loader = CSVLoader('./umamusume_character_baseinfo.csv', encoding='utf-8')
+csv_documents = loader.load()
+# for doc in csv_documents[:5]: 
+#     print("-----")
+#     print(doc.page_content)
+md_loader = TextLoader('./umamusume_game_info.md', encoding='utf-8')
+md_documents = md_loader.load()
+
+documents = [metadata_doc] + csv_documents + md_documents
+# text_splitter = RecursiveCharacterTextSplitter.from_language(language="markdown", chunk_size=200, chunk_overlap=0)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=0,separators=["\n\n", "\n", "。", "，", " ", ""])
+# separators=["\n", "。", "，", " ", ""]
 pages = text_splitter.split_documents(documents)
 
 # 加载PDF
@@ -70,7 +97,15 @@ texts = text_splitter.create_documents(
 
 
 # 选择向量模型，并灌库
-db = FAISS.from_documents(texts, OpenAIEmbeddings(model="text-embedding-ada-002",api_key=api_key,base_url=api_base))
+# db = FAISS.from_documents(texts, OpenAIEmbeddings(model="text-embedding-ada-002",api_key=api_key,base_url=api_base))
+embedding_model = HuggingFaceEmbeddings(
+    model_name="BAAI/bge-large-zh-v1.5",
+    model_kwargs = {'device': 'cpu'},
+    encode_kwargs = {'normalize_embeddings': True}
+    )
+db = FAISS.from_documents(texts, embedding_model)
+
+
 # 获取检索器，选择 top-2 相关的检索结果
 retriever = db.as_retriever(search_kwargs={"k": 2})
 

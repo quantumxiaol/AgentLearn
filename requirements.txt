@@ -7,7 +7,7 @@ langchain-core==0.3.59
 langgraph==0.3.31
 langchain_community==0.3.24
 langchain_experimental
-
+langchain_huggingface
 openai==1.75.0
 
 
@@ -33,3 +33,5 @@ oss2==2.19.1
 
 # faiss GPU ver only avaliable in Linux
 faiss-cpu==1.11
+
+sentence-transformers
