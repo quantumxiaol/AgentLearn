@@ -49,14 +49,18 @@
 - [ ] 搭建服务端和客户端
   - [x] 了解FastApi和flask([文档](task6/readme.md))
   - [x] 使用FastApi和flask创建服务端和客户端，测试联通，调用自己的工具([结果](task6/result.md))
-  - [ ] 使用FastApi部署服务
+  - [x] 使用FastApi部署服务
   - [x] 使用fastapi_mcp部署服务
 - [ ] Agent使用
   - [x] 了解Agent
   - [ ] 了解manus
+- [ ]RAG开发
+  - [x] 搭建向量数据库([文档](task12/readme.md))
+  - [ ] 利用RAG增强回答质量([结果](task12/result.md))
 - [ ] 实现简单项目
-  - [ ] 根据图片写短篇故事
+  - [ ] 根据图片写短篇故事，能够利用RAG获取人物设定。
     - [ ] 目标检测
+    - [ ] 上下文获取
 - [ ] 还在增加……
 
 # 目录
@@ -71,5 +75,6 @@
 ### [task9](task9)-[异步和并发](task9/readme.md)
 ### [task10](task10)-[图片上传](task10/readme.md)
 ### [task11](task11)-[Agent+MCP](task11/readme.md)
+### [task12](task12)-[UmaMusume RAG Agent](task12/readme.md)专为这碟醋包了前面一堆饺子
 
 # [报错、警告和处理方法](error.md)
