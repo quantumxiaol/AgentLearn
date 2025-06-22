@@ -1,0 +1,18 @@
+# Python 3.11
+
+fastapi
+langchain
+langchain_mcp_adapte
+langchain-openai
+langchain-community
+uvicorn
+openai
+mcp
+mcp-server
+langgraph
+dotenv
+pydantic
+
+# bowser-use
+# pip install bowser-use
+# playwright install
